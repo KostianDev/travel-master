@@ -1,0 +1,18 @@
+<h2>Search Flights (Callback + Debounce)</h2>
+<form method="get">
+  <label>From: <input type="text" name="from" /></label>
+  <label>To: <input type="text" name="to" /></label>
+  <button>Search</button>
+</form>
+
+<% if (error) { %>
+  <div><%= error %></div>
+<% } %>
+
+<% if (flights) { %>
+  <ul>
+    <% flights.forEach(f => { %>
+      <li><%= f.flightNo %> - <%= f.fromCity %> -> <%= f.toCity %> ($<%= f.price %>)</li>
+    <% }) %>
+  </ul>
+<% } %>

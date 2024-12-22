@@ -1,0 +1,17 @@
+<h2>Search Hotels (Promises + Parallel)</h2>
+<form>
+  <label>Cities: <input type="text" name="cities" placeholder="Kyiv,London" /></label>
+  <button>Search</button>
+</form>
+
+<% if (error) { %>
+  <div><%= error %></div>
+<% } %>
+
+<% if (hotels) { %>
+  <ul>
+    <% hotels.forEach(h => { %>
+      <li><%= h.hotelName %> / <%= h.city %>, rating <%= h.rating %></li>
+    <% }) %>
+  </ul>
+<% } %>

@@ -1,7 +1,9 @@
 <h2>Import CSV (Streaming)</h2>
-<form method="post">
-  <button>Import bigFlights.csv</button>
+
+<form action="/import" method="post">
+  <button type="submit">Import bigFlights.csv</button>
 </form>
+
 <% if (message) { %>
-  <p><%= message %></p>
+  <p class="success"><%= message %></p>
 <% } %>

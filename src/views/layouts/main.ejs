@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title><%= title || 'Travel Master' %></title>
+    <style>
+      body { margin: 0; font-family: sans-serif; }
+      header, footer { background: #eee; padding: 10px; }
+      nav a { margin-right: 10px; }
+      main { padding: 20px; }
+      .error { color: red; }
+      .success { color: green; }
+    </style>
   </head>
   <body>
     <header>
       <h1>Travel Master</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/flights">Flights</a>
+        <a href="/hotels">Hotels</a>
+        <a href="/import">Import CSV</a>
+        <a href="/deals">Live Deals</a>
+        <a href="/longop">Long Op</a>
+      </nav>
     </header>
     <main>
       <%- body %>
     </main>
+    <footer>
+      <p>© 2024 Travel Master</p>
+    </footer>
   </body>
 </html>

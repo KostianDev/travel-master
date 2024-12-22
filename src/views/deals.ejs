@@ -1,0 +1,31 @@
+<h2>Live Deals (EventEmitter + SSE)</h2>
+<button id="btn-connect">Connect SSE</button>
+
+<ul id="deals"></ul>
+
+<script>
+  const btn = document.getElementById('btn-connect');
+  const dealsList = document.getElementById('deals');
+
+  btn.addEventListener('click', () => {
+    const evtSource = new EventSource('/sse/deals');
+    evtSource.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+      if (data.message) {
+        // Вітання
+        const li = document.createElement('li');
+        li.textContent = data.message;
+        dealsList.appendChild(li);
+      } else {
+        const li = document.createElement('li');
+        li.textContent = `NEW DEAL: ${data.title} [discount ${data.discount}%]`;
+        dealsList.appendChild(li);
+      }
+    };
+  });
+</script>
+
+<p>
+  You can also generate a new deal by visiting:
+  <code>/emit-deal?title=DemoDeal&discount=30</code>
+</p>

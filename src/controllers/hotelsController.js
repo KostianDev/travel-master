@@ -1,4 +1,4 @@
-import getHotelsParallel from '../services/hotelsService.js';
+import { getHotelsParallel } from '../services/hotelsService.js';
 
 const showHotelsPage = async (req, res) => {
   const { cities } = req.query;

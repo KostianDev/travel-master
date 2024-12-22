@@ -21,11 +21,13 @@ CREATE TABLE IF NOT EXISTS hotels (
 INSERT INTO flights (flightNo, fromCity, toCity, price)
 VALUES
   ('PS101', 'Kyiv', 'London', 120),
-  ('PS102', 'Kyiv', 'London', 135)
+  ('PS102', 'Kyiv', 'London', 135),
+  ('BA200', 'Kyiv', 'Paris', 300)
 ON DUPLICATE KEY UPDATE price = VALUES(price);
 
 INSERT INTO hotels (hotelName, city, rating)
 VALUES
   ('London Palace', 'London', 4.5),
-  ('Kyiv Hotel X', 'Kyiv', 4.0)
+  ('Cozy Kyiv Hotel', 'Kyiv', 4.0),
+  ('Madrid Centro', 'Madrid', 4.3)
 ON DUPLICATE KEY UPDATE rating = VALUES(rating);

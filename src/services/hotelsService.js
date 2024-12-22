@@ -17,4 +17,11 @@ const getHotelsParallel = async (cities) => {
   return results.flat();
 };
 
-export default getHotelsParallel;
+const longDbOperation = async () => {
+  await new Promise(res => setTimeout(res, 3000));
+  
+  const [rows] = await pool.query('SELECT COUNT(*) as total FROM hotels');
+  return { info: 'Long DB op done', totalHotels: rows[0].total };
+};
+
+export { getHotelsParallel, longDbOperation };

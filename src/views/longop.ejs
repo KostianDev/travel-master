@@ -1,0 +1,45 @@
+<h2>Long Operation (AbortController)</h2>
+
+<p>Click "Start" to run a 3-second DB operation. You can cancel it before it completes.</p>
+
+<button id="btn-start">Start Long Op</button>
+<button id="btn-cancel">Cancel</button>
+
+<div id="result"></div>
+
+<script>
+  let controller;
+  const btnStart = document.getElementById('btn-start');
+  const btnCancel = document.getElementById('btn-cancel');
+  const resultDiv = document.getElementById('result');
+
+  btnStart.addEventListener('click', () => {
+    resultDiv.textContent = 'Starting...';
+    controller = new AbortController();
+
+    fetch('/longop', {
+      method: 'POST',
+      signal: controller.signal
+    })
+    .then(res => {
+      if (!res.ok) throw new Error('Response not ok');
+      return res.json();
+    })
+    .then(data => {
+      resultDiv.textContent = 'Finished: ' + JSON.stringify(data);
+    })
+    .catch(err => {
+      if (err.name === 'AbortError') {
+        resultDiv.textContent = 'Operation cancelled by user.';
+      } else {
+        resultDiv.textContent = 'Error: ' + err.message;
+    }
+    });
+  });
+
+  btnCancel.addEventListener('click', () => {
+    if (controller) {
+      controller.abort();
+    }
+  });
+</script>
